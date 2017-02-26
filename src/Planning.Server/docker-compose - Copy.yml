@@ -1,0 +1,30 @@
+version: '2'
+services:
+  todocore:
+    image: dern1co/todocore:latest
+    ports:
+    - "8000:5001"
+    networks: 
+    - backend
+  sql-linux:
+    image: microsoft/mssql-server-linux
+    volumes:
+    - //C/dev/sqlserver/data:/var/opt/mssql
+    ports:
+    - "1433:1433"
+    environment: 
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=NicoBolender4SQL*
+    networks: 
+      - backend
+  authServer:
+    image: dern1co/authserver:latest
+    ports:
+    - "7000:5000"
+    networks:
+    - backend
+
+
+networks:
+  backend:
+    driver: bridge
