@@ -13,6 +13,7 @@ namespace Planning.Client.Web
         {
             var host = new WebHostBuilder()
                 .UseKestrel()
+                .UseUrls("http://www.localhost:5002")
                 .UseContentRoot(Directory.GetCurrentDirectory())
                 .UseIISIntegration()
                 .UseStartup<Startup>()

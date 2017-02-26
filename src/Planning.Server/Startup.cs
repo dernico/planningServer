@@ -44,6 +44,7 @@ namespace Planning.Server
             loggerFactory.AddDebug();
 
 
+
             app.UseIdentityServerAuthentication(new IdentityServerAuthenticationOptions
             {
                 Authority = "http://localhost:5000",
@@ -51,6 +52,13 @@ namespace Planning.Server
 
                 ApiName = "api1"
             });
+
+            //app.UseJwtBearerAuthentication(new JwtBearerOptions
+            //{
+            //    Authority = "http://localhost:5000/", // base address of your OIDC server.
+            //    Audience = "http://localhost:5001/", // base address of your API.
+            //    RequireHttpsMetadata = false
+            //});
 
 
             app.UseCors(builder =>

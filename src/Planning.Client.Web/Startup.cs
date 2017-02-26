@@ -29,8 +29,8 @@ namespace Planning.Client.Web
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseStaticFiles();
             app.UseDefaultFiles();
+            app.UseStaticFiles();
 
             app.UseMvc();
         }

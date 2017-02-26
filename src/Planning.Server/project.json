@@ -42,7 +42,6 @@
     "warningsAsErrors": false,
     "emitEntryPoint": true,
     "debugType": "portable"
-    ,"compile": { "exclude": "angularApp/node_modules/" }
   },
 
   "runtimes": {
