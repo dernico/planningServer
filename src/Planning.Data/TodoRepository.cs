@@ -33,7 +33,7 @@ namespace Planning.Data
         public void AddTodo(TodoModel todo)
         {
             var newId = TodoList.Max(t => t.Id);
-            todo.Id = newId;
+            todo.Id = newId + 1;
 
             TodoList.Add(todo);
         }
