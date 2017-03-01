@@ -1,0 +1,22 @@
+﻿@model Planning.Client.MVCApp.Views.Todo.IndexModel
+
+@{
+    ViewBag.Title = "title";
+    Layout = "../Shared/_Layout.cshtml";
+}
+
+<h2>Todos</h2>
+
+@Html.ActionLink("Create", "Create")
+
+<ul>
+    @foreach (var model in Model.Todos)
+    {
+        <li>
+            @Html.ActionLink(model.Title, "Details", new { model.Id })
+            @Html.DisplayFor(item => model.Description)
+            @Html.ActionLink("Delete", "Delete", new {model.Id})
+        </li>
+    }
+</ul>
+
