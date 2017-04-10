@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { TodoService } from '../../services/todo.service';
 import { LoginService } from '../../services/login.service';
+import { WebclientService } from '../../services/webclient.service';
 import { Todo } from '../../models/todo';
 
 @Component({
     templateUrl: './tasks.component.html',
     styleUrls: ['./tasks.component.css'],
-    providers: [TodoService, LoginService]
+    providers: [TodoService, LoginService, WebclientService]
 })
 export class TasksComponent implements OnInit {
 

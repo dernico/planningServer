@@ -9,6 +9,8 @@
       "outDir": "../wwwroot",
       "assets": [
         "assets",
+        "callback.html",
+        "oidc-client.min.js",
         "favicon.ico"
       ],
       "index": "index.html",
@@ -20,7 +22,8 @@
       "styles": [
         "styles.css"
       ],
-      "scripts": [],
+      "scripts": [
+      ],
       "environments": {
         "source": "environments/environment.ts",
         "dev": "environments/environment.ts",

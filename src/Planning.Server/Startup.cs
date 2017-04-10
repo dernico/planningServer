@@ -73,7 +73,7 @@ namespace Planning.Server
             app.UseMvc();
 
             // make sure the tododatabase exists
-            todoContext.Database.EnsureCreated();
+            //todoContext.Database.EnsureCreated();
         }
     }
 }

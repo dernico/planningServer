@@ -7,12 +7,14 @@ import { RouterModule } from '@angular/router';
 import { AppComponent } from './components/app/app.component';
 import { TasksComponent } from './components/tasks/tasks.component';
 import { StartComponent } from './components/start/start.component';
+import { NavigationComponent } from './components/navigation/navigation.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TasksComponent,
-    StartComponent
+    StartComponent,
+    NavigationComponent
   ],
   imports: [
     RouterModule.forRoot([
@@ -32,4 +34,5 @@ import { StartComponent } from './components/start/start.component';
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

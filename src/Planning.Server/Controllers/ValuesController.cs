@@ -33,15 +33,15 @@ public class Todo{
         [HttpGet]
         public IEnumerable<Todo> Get()
         {
-            return _todoContext
-                .Todos
-                .Select(t => new Todo() { id = t.Id, title = t.Title, description = t.Description })
-                .ToList();
-            // return new List<Todo> { 
-            //     new Todo { id = 1, title = "todo 1", description = "description1" }, 
-            //     new Todo { id = 2, title = "todo 2", description = "description1" }, 
-            //     new Todo { id = 3, title = "todo 3", description = "description1" },  
-            // };
+            //return _todoContext
+            //    .Todos
+            //    .Select(t => new Todo() { id = t.Id, title = t.Title, description = t.Description })
+            //    .ToList();
+            return new List<Todo> {
+                 new Todo { id = 1, title = "todo 1", description = "description1" },
+                 new Todo { id = 2, title = "todo 2", description = "description1" },
+                 new Todo { id = 3, title = "todo 3", description = "description1" },
+             };
         }
 
         // GET api/values/5

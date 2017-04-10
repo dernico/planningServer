@@ -16,7 +16,8 @@
     "Microsoft.NETCore.App": "1.1.0",
     "Microsoft.TypeScript.Compiler": "2.1.5",
     "Microsoft.TypeScript.MSBuild": "2.1.5",
-    "IdentityServer4.AccessTokenValidation": "1.0.1"
+    "IdentityServer4.AccessTokenValidation": "1.0.1",
+    "Microsoft.Extensions.Configuration.UserSecrets": "1.1.1"
   },
 
   "tools": {

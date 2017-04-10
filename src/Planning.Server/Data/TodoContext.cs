@@ -7,7 +7,7 @@ namespace Planning.Server.Data
     {
         public TodoContext(DbContextOptions<TodoContext> options) : base(options)
         {
-            Database.EnsureCreated();
+            //Database.EnsureCreated();
         }
 
         public DbSet<Todo> Todos { get; set; }

@@ -1,6 +1,6 @@
 import { Injectable, Inject } from "@angular/core";
 import { Todo } from "../models/todo";
-import { LoginService } from "./login.service";
+import { WebclientService } from "./webclient.service";
 import { Headers, Http } from "@angular/http";
 
 import 'rxjs/add/operator/toPromise';
@@ -8,41 +8,47 @@ import 'rxjs/add/operator/toPromise';
 @Injectable()
 export class TodoService {
 
-    constructor(private http: Http, private loginService: LoginService) {}
+    constructor(private webclient : WebclientService) {}
 
     loadTodos(): Promise<Todo[]> {
-        return new Promise((resolve, reject) => {
 
-            this.loginService.login().then(user => {
-                
-                const headers = new Headers({ 'Accept': 'application/json' });
-                const bearer = `Bearer ${user.access_token}`;
-                headers.append("Authorization", bearer);
+        return this.webclient.get("http://localhost:5001/api/values");
 
-                return this.http
-                    .get("http://localhost:5001/api/values", { headers: headers })
-                    .toPromise()
-                    .then(response => {
-                        var json = response.json();
-                        resolve(json as Todo[]);
-                    })
-                    .catch(this.handleError);
-            });
-        });
+
+        //return new Promise((resolve, reject) => {
+
+        //    this.webclient.get("http://localhost:5001/api/values").then(response => {
+        //        var json = response.json();
+        //        resolve(json as Todo[]);
+        //    })
+        //    .catch(this.handleError);
+        //});
     }
 
     addTodo(todo: Todo): Promise<any> {
-        return this.http
-            .post('api/values', todo)
-            .toPromise()
-            .catch(this.handleError);
+        
+        return this.webclient.post<Todo[]>("http://localhost:5001/api/values", todo);
+
+        //return new Promise((resolve, reject) => {
+
+        //    this.loginService.login().then(user => {
+
+        //        const headers = new Headers({ 'Accept': 'application/json' });
+        //        const bearer = `Bearer ${user.access_token}`;
+        //        headers.append("Authorization", bearer);
+
+        //        return this.http
+        //            .post('http://localhost:5001/api/values', todo, { headers: headers })
+        //            .toPromise()
+        //            .then(resolve)
+        //            .catch(this.handleError);
+        //    });
+        //});
     }
 
     deleteTodo(id: number) {
-        return this.http
-            .delete("api/values/" + id)
-            .toPromise()
-            .catch(this.handleError);
+        return this.webclient
+            .delete("http://localhost:5001/api/values/" + id);
     }
 
     private handleError(error: any): Promise<any> {
