@@ -27,11 +27,11 @@ export class LoginService {
           resolve(user);
         }
         else {
-            this.client.createSigninRequest({ state: { bar: 15 } }).then(function (req) {
+            this.client.createSigninRequest().then(function (req) {
               console.log("signin request", req, "<a href='" + req.url + "'>go signin</a>");
               window.location.href = req.url;
-            }).catch(function (err) {
-              //log(err);
+            }).catch(err => {
+              reject(err);
             });
         }
       });

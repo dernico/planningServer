@@ -83,8 +83,8 @@ export class WebclientService {
 
     private handleError(error: any): Promise<any> {
         //console.error('An error occurred', error); // for demo purposes only
-        return this.loginService.logout();
-        //return Promise.reject(error.message || error);
+        //return this.loginService.logout();
+        return Promise.reject(error.message || error);
     }
 
 }
