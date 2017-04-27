@@ -10,12 +10,18 @@ using IdentityServer4.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
 namespace Planning.AuthServer
 {
+    public class ApplicationDbContext : IdentityDbContext
+    {
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
+    }
+
     public class Startup
     {
         // This method gets called by the runtime. Use this method to add services to the container.
@@ -28,13 +34,18 @@ namespace Planning.AuthServer
             var connectionString = @"server=(localdb)\mssqllocaldb;database=IdentityServer4.Quickstart.EntityFramework;trusted_connection=yes";
             var migrationsAssembly = typeof(Startup).GetTypeInfo().Assembly.GetName().Name;
 
+            services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(connectionString));
+            services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>();
+            
             services
                 .AddIdentityServer()
                 .AddTemporarySigningCredential()
-                .AddTestUsers(Config.GetUsers())
+                .AddAspNetIdentity<IdentityUser>()
+
                 .AddConfigurationStore(builder =>
                     builder.UseSqlServer(connectionString, options =>
                         options.MigrationsAssembly(migrationsAssembly)))
+
                 .AddOperationalStore(builder =>
                     builder.UseSqlServer(connectionString, options =>
                         options.MigrationsAssembly(migrationsAssembly)));
@@ -68,6 +79,7 @@ namespace Planning.AuthServer
             app.UseDeveloperExceptionPage();
 
             app.UseIdentityServer();
+            app.UseIdentity();
 
             app.UseDefaultFiles();
             app.UseStaticFiles();
