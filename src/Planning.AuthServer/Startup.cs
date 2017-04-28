@@ -39,7 +39,6 @@ namespace Planning.AuthServer
             
             services
                 .AddIdentityServer()
-                .AddTemporarySigningCredential()
                 .AddAspNetIdentity<IdentityUser>()
 
                 .AddConfigurationStore(builder =>
@@ -48,7 +47,9 @@ namespace Planning.AuthServer
 
                 .AddOperationalStore(builder =>
                     builder.UseSqlServer(connectionString, options =>
-                        options.MigrationsAssembly(migrationsAssembly)));
+                        options.MigrationsAssembly(migrationsAssembly)))
+
+                .AddTemporarySigningCredential();
 
             //services
             //    .AddIdentityServer()
@@ -67,7 +68,10 @@ namespace Planning.AuthServer
 
             loggerFactory.AddConsole(LogLevel.Debug);
 
+
             InitializeDatabase(app);
+            app.UseIdentity();
+            app.UseIdentityServer();
 
             app.UseCors(builder =>
             {
@@ -78,8 +82,6 @@ namespace Planning.AuthServer
 
             app.UseDeveloperExceptionPage();
 
-            app.UseIdentityServer();
-            app.UseIdentity();
 
             app.UseDefaultFiles();
             app.UseStaticFiles();
