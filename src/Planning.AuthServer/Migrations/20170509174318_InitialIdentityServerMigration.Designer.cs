@@ -5,11 +5,11 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using IdentityServer4.EntityFramework.DbContexts;
 
-namespace Planning.AuthServer.Data.Migrations.IdentityServer.PersistedGrantDb
+namespace Planning.AuthServer.Migrations
 {
     [DbContext(typeof(PersistedGrantDbContext))]
-    [Migration("20170427163553_InitialIdentityServerPersistedGrantDbMigration")]
-    partial class InitialIdentityServerPersistedGrantDbMigration
+    [Migration("20170509174318_InitialIdentityServerMigration")]
+    partial class InitialIdentityServerMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

@@ -5,13 +5,12 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Planning.AuthServer;
 
-namespace Planning.AuthServer.Migrations
+namespace Planning.AuthServer.Migrations.AuthServerDb
 {
-    [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20170427180356_InitialIdentityServerMigration")]
-    partial class InitialIdentityServerMigration
+    [DbContext(typeof(AuthServerDbContext))]
+    partial class AuthServerDbContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.1.1")

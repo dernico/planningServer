@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Metadata;
 
-namespace Planning.AuthServer.Migrations
+namespace Planning.AuthServer.Migrations.AuthServerDb
 {
     public partial class InitialIdentityServerMigration : Migration
     {

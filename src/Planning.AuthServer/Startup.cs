@@ -17,9 +17,9 @@ using Microsoft.Extensions.Logging;
 
 namespace Planning.AuthServer
 {
-    public class ApplicationDbContext : IdentityDbContext
+    public class AuthServerDbContext : IdentityDbContext
     {
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
+        public AuthServerDbContext(DbContextOptions<AuthServerDbContext> options) : base(options) { }
     }
 
     public class Startup
@@ -34,8 +34,8 @@ namespace Planning.AuthServer
             var connectionString = @"server=(localdb)\mssqllocaldb;database=IdentityServer4.Quickstart.EntityFramework;trusted_connection=yes";
             var migrationsAssembly = typeof(Startup).GetTypeInfo().Assembly.GetName().Name;
 
-            services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(connectionString));
-            services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>();
+            services.AddDbContext<AuthServerDbContext>(options => options.UseSqlServer(connectionString));
+            services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<AuthServerDbContext>();
             
             services
                 .AddIdentityServer()
@@ -92,6 +92,7 @@ namespace Planning.AuthServer
         {
             using (var serviceScope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())
             {
+                serviceScope.ServiceProvider.GetRequiredService<AuthServerDbContext>().Database.Migrate();
                 serviceScope.ServiceProvider.GetRequiredService<PersistedGrantDbContext>().Database.Migrate();
 
                 var context = serviceScope.ServiceProvider.GetRequiredService<ConfigurationDbContext>();
